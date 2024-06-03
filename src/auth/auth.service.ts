@@ -31,11 +31,12 @@ export class AuthService {
         'Este nombre de usuario no se encuetra disponible',
       );
     }
-    return await this.usersService.create({
+    user = await this.usersService.create({
       userName,
       email,
       password: await bcryptjs.hash(password, 10),
     });
+    return { message: 'Cuenta creada con exito', userName: user.userName };
   }
 
   async login(loginDto: LoginDto) {
