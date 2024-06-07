@@ -15,4 +15,8 @@ export class ResourceService {
   async findAll(){
     return await this.resourceRepository.find()
   }
+
+  async findByIds(resourcesIds: number[]){
+    return await this.resourceRepository.findByIds(resourcesIds)
+  }
 }

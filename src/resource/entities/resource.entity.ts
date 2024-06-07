@@ -1,4 +1,5 @@
-import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
+import { Qr } from "src/qrs/entities/qr.entity";
+import { Column, Entity, ManyToMany, PrimaryGeneratedColumn } from "typeorm";
 
 @Entity()
 export class Resource {
@@ -10,4 +11,7 @@ export class Resource {
 
     @Column({nullable:false})
     type:string
+
+    @ManyToMany(()=>Qr, (qr) => qr.resources )
+    qrs: Qr[]
 }

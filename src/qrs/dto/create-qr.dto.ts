@@ -1,9 +1,14 @@
 import { Transform } from 'class-transformer'
-import { IsString, MinLength } from 'class-validator'
+import { ArrayMaxSize, ArrayMinSize, IsArray, IsString, MinLength } from 'class-validator'
 
 export class CreateQrDto{
     @Transform(({value})=>(value.trim()))
     @IsString()
     @MinLength(3)
     qrIdentifier:string
+
+    @IsArray()
+    @ArrayMinSize(0)
+    @ArrayMaxSize(3)
+    resourcesIds:number[]
 }

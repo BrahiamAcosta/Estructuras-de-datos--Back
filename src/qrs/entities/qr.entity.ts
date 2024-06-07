@@ -1,4 +1,5 @@
-import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
+import { Column, Entity, JoinTable, ManyToMany, PrimaryGeneratedColumn } from "typeorm";
+import { Resource } from "src/resource/entities/resource.entity";
 
 @Entity()
 export class Qr {
@@ -10,4 +11,16 @@ export class Qr {
 
     @Column({default:0})
     scanCount:number
+
+    @ManyToMany(()=> Resource, (resource)=>resource.qrs)
+    @JoinTable({
+        name:'qrs_resources',
+        joinColumn:{
+            name:'qr_id'
+        },
+        inverseJoinColumn:{
+            name:'resource_id'
+        }
+    })
+    resources: Resource[]
 }
