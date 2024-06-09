@@ -1,5 +1,6 @@
 import { Column, Entity, JoinTable, ManyToMany, PrimaryGeneratedColumn } from "typeorm";
 import { Resource } from "src/resource/entities/resource.entity";
+import { User } from "src/users/entities/user.entity";
 
 @Entity()
 export class Qr {
@@ -23,4 +24,7 @@ export class Qr {
         }
     })
     resources: Resource[]
+
+    @ManyToMany(()=>User,(user)=>user.qrs)
+    users: User[]
 }

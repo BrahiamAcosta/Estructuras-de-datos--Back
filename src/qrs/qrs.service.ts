@@ -4,11 +4,13 @@ import { Qr } from './entities/qr.entity';
 import { Repository } from 'typeorm';
 import { CreateQrDto } from './dto/create-qr.dto';
 import { ResourceService } from 'src/resource/resource.service';
+import { GetQrDto } from './dto/get-qr.dto';
+import { UsersService } from 'src/users/users.service';
 
 @Injectable()
 export class QrsService {
   
-  constructor(@InjectRepository(Qr) private readonly qrRepository: Repository<Qr>,private readonly resourceService: ResourceService){
+  constructor(@InjectRepository(Qr) private readonly qrRepository: Repository<Qr>,private readonly resourceService: ResourceService,private readonly usersService:UsersService){
   }
   async create(createQrDto: CreateQrDto) {
     const {qrIdentifier, resourcesIds} = createQrDto
@@ -27,15 +29,22 @@ export class QrsService {
     return this.qrRepository.save(newQr)
   }
 
-  async findOneByIdentifier(qrIdentifier:string) : Promise<Qr | undefined>{
+  async findQr(getQrDto: GetQrDto) : Promise<Qr | undefined>{
+    const {qrIdentifier,userName} = getQrDto
     const qr = await this.qrRepository.findOne({where:{qrIdentifier},relations:['resources']})
     
     if(qr){
+      const user = await this.usersService.findOneByUserName(userName)
+
+      if (!user) {
+        throw new BadRequestException('Ocurrio un error: Usuario invalido');
+      }
+
       await this.qrRepository.update({qrIdentifier}, {scanCount:qr.scanCount + 1})
-      return this.qrRepository.findOne({
-        where: { qrIdentifier },
-        relations: ['resources'],
-    });
+
+      await this.usersService.addQrToUser(user.id,qr)
+
+      return qr
     }
 
     throw new BadRequestException(
