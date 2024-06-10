@@ -24,7 +24,7 @@ export class QrsService {
 
     const resources = await this.resourceService.findByIds(resourcesIds)
     const newQr = new Qr()
-    newQr.qrIdentifier = createQrDto.qrIdentifier
+    newQr.qrIdentifier = qrIdentifier
     newQr.resources = resources
     return this.qrRepository.save(newQr)
   }
