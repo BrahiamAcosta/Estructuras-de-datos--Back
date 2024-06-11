@@ -1,6 +1,7 @@
-import { Column, Entity, JoinTable, ManyToMany, PrimaryGeneratedColumn } from "typeorm";
+import { Column, Entity, JoinTable, ManyToMany, OneToMany, PrimaryGeneratedColumn } from "typeorm";
 import { Resource } from "src/resource/entities/resource.entity";
 import { User } from "src/users/entities/user.entity";
+import { ErrorReport } from "src/error-report/entities/error-report.entity";
 
 @Entity()
 export class Qr {
@@ -33,4 +34,7 @@ export class Qr {
 
     @ManyToMany(()=>User, (user)=>user.favoriteQrs)
     favoriteUsers:User[]
+
+    @OneToMany(()=>ErrorReport, (errorReport)=>errorReport.qr)
+    errorReports:ErrorReport[]
 }

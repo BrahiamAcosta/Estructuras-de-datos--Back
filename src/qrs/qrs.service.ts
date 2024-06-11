@@ -73,4 +73,8 @@ export class QrsService {
       'Lo sentimos, este codigo no existe en nuestra base de datos',
     );
   }
+
+  async existsQr(qrIdentifier:string){
+    return await this.qrRepository.findOne({where:{qrIdentifier}})
+  }
 }

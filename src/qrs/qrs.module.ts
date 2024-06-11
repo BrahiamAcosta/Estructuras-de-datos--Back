@@ -10,5 +10,6 @@ import { UsersModule } from 'src/users/users.module';
   imports:[TypeOrmModule.forFeature([Qr]),ResourceModule,UsersModule],
   controllers: [QrsController],
   providers: [QrsService],
+  exports:[QrsService]
 })
 export class QrsModule {}

@@ -27,7 +27,7 @@ export class UsersService {
     return this.userRepository.findOne({where:{userName}, relations:['qrs','qrs.resources'], select:['id','userName']})
   }
   async getUserFavoriteQrs(userName:string){
-    return this.userRepository.findOne({where:{userName}, relations:['favoriteQrs','favoriteQrs.resources'], select:['id','userName']})
+    return await this.userRepository.findOne({where:{userName}, relations:['favoriteQrs','favoriteQrs.resources'], select:['id','userName']})
   }
 
   async addQrToUser(id:number,qr:Qr){

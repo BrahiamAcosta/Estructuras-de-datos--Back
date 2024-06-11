@@ -5,6 +5,7 @@ import { UsersModule } from './users/users.module';
 import { AuthModule } from './auth/auth.module';
 import { QrsModule } from './qrs/qrs.module';
 import { ResourceModule } from './resource/resource.module';
+import { ErrorReportModule } from './error-report/error-report.module';
 
 @Module({
   imports: [
@@ -23,6 +24,7 @@ import { ResourceModule } from './resource/resource.module';
     AuthModule,
     QrsModule,
     ResourceModule,
+    ErrorReportModule,
   ],
   controllers: [],
   providers: [],
