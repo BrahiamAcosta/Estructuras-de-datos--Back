@@ -13,6 +13,9 @@ export class Qr {
     @Column({default:0})
     scanCount:number
 
+    @Column({nullable:false, default:'EcoScan Qr'})
+    primaryName:string
+
     @ManyToMany(()=> Resource, (resource)=>resource.qrs)
     @JoinTable({
         name:'qrs_resources',

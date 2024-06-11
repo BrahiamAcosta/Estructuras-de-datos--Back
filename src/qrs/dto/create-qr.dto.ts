@@ -11,4 +11,9 @@ export class CreateQrDto{
     @ArrayMinSize(0)
     @ArrayMaxSize(3)
     resourcesIds:number[]
+
+    @Transform(({value})=>(value.trim()))
+    @IsString()
+    @MinLength(1)
+    primaryName:string
 }

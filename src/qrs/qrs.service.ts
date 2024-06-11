@@ -13,7 +13,7 @@ export class QrsService {
   constructor(@InjectRepository(Qr) private readonly qrRepository: Repository<Qr>,private readonly resourceService: ResourceService,private readonly usersService:UsersService){
   }
   async create(createQrDto: CreateQrDto) {
-    const {qrIdentifier, resourcesIds} = createQrDto
+    const {qrIdentifier, resourcesIds, primaryName} = createQrDto
     const idAlreadyExists = await this.qrRepository.findOne({where:{qrIdentifier}})
 
     if(idAlreadyExists){
@@ -26,6 +26,7 @@ export class QrsService {
     const newQr = new Qr()
     newQr.qrIdentifier = qrIdentifier
     newQr.resources = resources
+    newQr.primaryName = primaryName
     return this.qrRepository.save(newQr)
   }
 
