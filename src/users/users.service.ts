@@ -26,8 +26,11 @@ export class UsersService {
   async getUserQrs(userName:string){
     return this.userRepository.findOne({where:{userName}, relations:['qrs'], select:['id','userName']})
   }
+  async getUserFavoriteQrs(userName:string){
+    return this.userRepository.findOne({where:{userName}, relations:['favoriteQrs'], select:['id','userName']})
+  }
 
-  async addQrToUser(id:number,qr:Qr): Promise<User | undefined>{
+  async addQrToUser(id:number,qr:Qr){
     const user = await this.userRepository.findOne({where:{id}, relations:['qrs']})
     if(!user){
       throw new NotFoundException('Ocurrió un error: usuario invalido')
@@ -41,6 +44,22 @@ export class UsersService {
       await this.userRepository.save(user);
     }
 
-    return user
+    return 'Qr agregado a escaneados'
+  }
+
+  async addQrToFavorites(id:number,qr:Qr){
+    const user = await this.userRepository.findOne({where:{id}, relations:['favoriteQrs']})
+    if(!user){
+      throw new NotFoundException('Ocurrió un error: usuario invalido')
+    }
+
+    if (!user.favoriteQrs.some(existingQr => existingQr.id === qr.id)) {
+      // Agregar el QR a la lista de qrs del usuario
+      user.favoriteQrs.push(qr);
+      // Guardar el usuario actualizado
+      await this.userRepository.save(user);
+    }
+
+    return 'Qr agregado a favoritos'
   }
 }

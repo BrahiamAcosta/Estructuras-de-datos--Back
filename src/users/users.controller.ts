@@ -5,8 +5,13 @@ import { UsersService } from './users.service';
 export class UsersController {
   constructor(private readonly usersService: UsersService) {}
 
-  @Get(':username')
+  @Get('all/:username')
   getUserQrs(@Param('username') username: string) {
     return this.usersService.getUserQrs(username);
+  }
+
+  @Get('favorites/:username')
+  getUserFavoriteQrs(@Param('username') username: string) {
+    return this.usersService.getUserFavoriteQrs(username);
   }
 }

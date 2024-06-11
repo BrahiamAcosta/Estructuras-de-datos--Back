@@ -51,4 +51,25 @@ export class QrsService {
       'Lo sentimos, este codigo no existe en nuestra base de datos',
     );
   }
+
+  async addFavoriteQr(getQrDto:GetQrDto){
+    const {qrIdentifier,userName} = getQrDto
+    const qr = await this.qrRepository.findOne({where:{qrIdentifier},relations:['resources']})
+    
+    if(qr){
+      const user = await this.usersService.findOneByUserName(userName)
+
+      if (!user) {
+        throw new BadRequestException('Ocurrio un error: Usuario invalido');
+      }
+
+      await this.usersService.addQrToFavorites(user.id,qr)
+
+      return 'Qr agregado a favoritos'
+    }
+
+    throw new BadRequestException(
+      'Lo sentimos, este codigo no existe en nuestra base de datos',
+    );
+  }
 }

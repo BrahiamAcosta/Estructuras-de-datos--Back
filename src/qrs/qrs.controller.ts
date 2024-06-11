@@ -17,4 +17,9 @@ export class QrsController {
     return this.qrsService.findQr(getQrDto);
   }
 
+  @Post('favorite')
+  addFavoriteQr(@Body() getQrDto: GetQrDto){
+    return this.qrsService.addFavoriteQr(getQrDto)
+  }
+
 }

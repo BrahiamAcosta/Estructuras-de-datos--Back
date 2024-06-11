@@ -27,4 +27,7 @@ export class Qr {
 
     @ManyToMany(()=>User,(user)=>user.qrs)
     users: User[]
+
+    @ManyToMany(()=>User, (user)=>user.favoriteQrs)
+    favoriteUsers:User[]
 }

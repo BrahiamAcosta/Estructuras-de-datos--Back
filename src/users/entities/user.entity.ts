@@ -26,4 +26,16 @@ export class User {
     }
 }))
   qrs:Qr[]
+
+  @ManyToMany(()=>Qr, (qr)=> qr.favoriteUsers)
+  @JoinTable(({
+    name:'Favorites',
+    joinColumn:{
+      name:'user_id'
+    },
+    inverseJoinColumn:{
+      name:'qr_id'
+    }
+  }))
+  favoriteQrs:Qr[]
 }
