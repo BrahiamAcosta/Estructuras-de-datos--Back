@@ -6,6 +6,7 @@ import { AuthModule } from './auth/auth.module';
 import { QrsModule } from './qrs/qrs.module';
 import { ResourceModule } from './resource/resource.module';
 import { ErrorReportModule } from './error-report/error-report.module';
+import { TagsModule } from './tags/tags.module';
 
 @Module({
   imports: [
@@ -25,6 +26,7 @@ import { ErrorReportModule } from './error-report/error-report.module';
     QrsModule,
     ResourceModule,
     ErrorReportModule,
+    TagsModule,
   ],
   controllers: [],
   providers: [],
