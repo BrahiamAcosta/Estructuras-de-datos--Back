@@ -24,10 +24,10 @@ export class UsersService {
   }
 
   async getUserQrs(userName:string){
-    return this.userRepository.findOne({where:{userName}, relations:['qrs'], select:['id','userName']})
+    return this.userRepository.findOne({where:{userName}, relations:['qrs','qrs.resources'], select:['id','userName']})
   }
   async getUserFavoriteQrs(userName:string){
-    return this.userRepository.findOne({where:{userName}, relations:['favoriteQrs'], select:['id','userName']})
+    return this.userRepository.findOne({where:{userName}, relations:['favoriteQrs','favoriteQrs.resources'], select:['id','userName']})
   }
 
   async addQrToUser(id:number,qr:Qr){
