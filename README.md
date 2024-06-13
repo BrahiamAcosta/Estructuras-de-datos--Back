@@ -36,7 +36,7 @@ DB_DATABASE = tu-base-de-datos
 JWT_SECRET = bcjdi7484j@kd.ll8229/fff
 ```
 
-##Ejecuta el servidor de desarrollo
+## Ejecuta el servidor de desarrollo
 
 Por ultimo, una vez configurado todo, solo resta escribir el comando
 ```bash
