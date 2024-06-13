@@ -1,10 +1,10 @@
-import { IsString, IsUrl, MinLength } from "class-validator";
+import { IsNumber, IsString, MinLength } from "class-validator";
 
 export class CreateResourceDto {
-    @IsUrl()
-    @MinLength(10)
-    link:string
-
     @IsString()
-    type:string
+    @MinLength(10)
+    content:string
+
+    @IsNumber()
+    typeID:number
 }

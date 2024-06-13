@@ -7,6 +7,7 @@ import { QrsModule } from './qrs/qrs.module';
 import { ResourceModule } from './resource/resource.module';
 import { ErrorReportModule } from './error-report/error-report.module';
 import { TagsModule } from './tags/tags.module';
+import { ResourceTypeModule } from './resource-type/resource-type.module';
 
 @Module({
   imports: [
@@ -27,6 +28,7 @@ import { TagsModule } from './tags/tags.module';
     ResourceModule,
     ErrorReportModule,
     TagsModule,
+    ResourceTypeModule,
   ],
   controllers: [],
   providers: [],

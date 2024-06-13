@@ -38,7 +38,7 @@ export class QrsService {
 
   async findQr(getQrDto: GetQrDto) : Promise<Qr | undefined>{
     const {qrIdentifier,userName} = getQrDto
-    const qr = await this.qrRepository.findOne({where:{qrIdentifier},relations:['resources','tags']})
+    const qr = await this.qrRepository.findOne({where:{qrIdentifier},relations:['resources','resources.resourceType','tags']})
     
     if(qr){
       const user = await this.usersService.findOneByUserName(userName)
