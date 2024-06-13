@@ -43,3 +43,6 @@ Por ultimo, una vez configurado todo, solo resta escribir el comando
 yarn start:dev
 ```
 Este comando iniciará el servidor en modo de desarrollo y podrás ver la salida en la terminal. El servidor estará disponible en http://localhost:3000.
+
+## Nota:
+El servidor cuenta con un prefijo para todas las peticiones que realices. Esta es api/v1, y se encuentra definida en el archivo main.ts. Cada peticion que realices deberá llevar este prefijo.
