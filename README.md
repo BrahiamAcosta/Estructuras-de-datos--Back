@@ -33,8 +33,9 @@ DB_PORT = 3306
 DB_USERNAME = tu-usuario
 DB_PASSWORD = tu-contraseña
 DB_DATABASE = tu-base-de-datos
-JWT_SECRET = bcjdi7484j@kd.ll8229/fff
+JWT_SECRET = una-clave-secreta
 ```
+Este .env contiene principalmente informacion sobre la conección a la base de datos.
 
 ## Ejecuta el servidor de desarrollo
 
