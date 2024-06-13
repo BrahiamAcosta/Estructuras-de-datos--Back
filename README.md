@@ -1,6 +1,6 @@
 # Proyecto Backend en NestJS
 
-¡Bienvenido a nuestro proyecto de backend en NestJS! Este documento te guiará para clonar el repositorio, instalar las dependencias necesarias y poner en marcha el servidor de desarrollo.
+Este documento te guiará para clonar el repositorio, instalar las dependencias necesarias y poner en marcha el servidor de desarrollo.
 
 ## Requisitos
 
